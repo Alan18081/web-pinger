@@ -16,16 +16,24 @@ class UsersController {
 			);
 		}
 
-		const user = await usersService.findOne(data.body.email);
+		try {
 
-		if(user) {
-			return new HttpResponse(
-				HttpCodes.CONFLICT,
-				new HttpError('User already exists')
-			);
+			const user = await usersService.findByEmail(data.body.email);
+
+			if(user) {
+				return new HttpResponse(
+					HttpCodes.CONFLICT,
+					new HttpError('User already exists')
+				);
+			}
+
+			const newUser = await usersService.createUser(data);
+
+			return new HttpResponse(HttpCodes.SUCCESS, newUser);
+		} catch (e) {
+			console.log(e);
+			return new HttpResponse(HttpCodes.SERVER_ERROR, { error: 'Failed to upload file' });
 		}
-
-		return await usersService.addUser(data);
 	}
 
 	async findAll() {
@@ -34,8 +42,30 @@ class UsersController {
 	}
 
 	async updateOne(data) {
+		const error = usersFilter.updateUser(data);
+		if(error) {
+			return new HttpResponse(HttpCodes.BAD_REQUEST, error);
+		}
+
+		try {
+			const updatedUser = await usersService.updateUser(data.user, data.body);
+			return new HttpResponse(HttpCodes.SUCCESS, updatedUser);
+		} catch (e) {
+			console.log(e);
+			return new HttpResponse(HttpCodes.SERVER_ERROR, new HttpError('Server Error'));
+		}
 
 	}
+
+	async deleteOne({ user }) {
+		try {
+			await usersService.deleteUser(user.id, user.email);
+			return new HttpResponse(HttpCodes.SUCCESS);
+		} catch (e) {
+			return new HttpResponse(HttpCodes.SERVER_ERROR, new HttpError('Server Error'));
+		}
+	}
+
 }
 
 module.exports = new UsersController();

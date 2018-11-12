@@ -81,8 +81,7 @@ class Server {
 		// Log path
 	};
 
-	init() {
-		console.log('Initing');
+	run() {
 		this.httpServer.listen(config.httpPort, () => {
 			debug('\x1b[36m%s\x1b[0m', `Http server is listening port ${config.httpPort} in ${config.envName} environment`);
 		});

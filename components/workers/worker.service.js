@@ -1,17 +1,18 @@
 const http = require('http');
 const https = require('https');
 const util = require('util');
-const Files = require('./helpers/files.helper');
-const EmailsService = require('./components/email/emails.service');
+const Files = require('../../helpers/files.helper');
+const EmailsService = require('../email/emails.service');
 const url = require('url');
-const request = require('./helpers/request');
-const SiteStatuses = require('./helpers/site-statuses');
-const logs = require('./components/logs/logs.service');
+const request = require('../../helpers/request');
+const SiteStatuses = require('../../helpers/site-statuses');
+const logsService = require('../logs/logs.service');
+const usersService = require('../users/users.service');
 
 const files = new Files('.data');
 const emailsService = new EmailsService('gogunov00@gmail.com');
 
-class Worker {
+class WorkerService {
 	constructor(userId) {
 		this.userId = userId;
 		this.checks = [];
@@ -23,6 +24,12 @@ class Worker {
 		}, 1000 );
 	}
 
+	rotateLoop() {
+		setInterval(() => {
+			this.rotateLogs();
+		}, 1000 * 60 * 60 * 24);
+	}
+
 	watchChanges() {
 		files.watch(`checks/${this.userId}`, () => this.loadChecks());
 	}
@@ -32,7 +39,7 @@ class Worker {
 	}
 
 	async rotateLogs() {
-
+		await logsService.compressLogs();
 	}
 
 	async mapChecks() {
@@ -65,11 +72,11 @@ class Worker {
 			}
 
 			await files.update(`checks/${checkData.userId}`, checkData.id, checkData);
-			await logs.appendNewLog(checkData, statusCode);
-			await emailsService.sendEmail('alexostapiuk00@gmail.com', 'Test title', 'Test content');
+			const userData = await usersService.findById(checkData.userId);
+			const isSuccess = await emailsService.sendEmail(userData.email, checkData);
+			await logsService.appendNewLog(checkData, statusCode, isSuccess);
 
 		} catch (e) {
-
 			console.log(e);
 		}
 
@@ -79,9 +86,10 @@ class Worker {
 		await this.loadChecks();
 		this.watchChanges();
 		this.loop();
+		this.rotateLoop();
 
 		console.log('Worker for user', this.userId, 'started');
 	}
 }
 
-module.exports = Worker;
+module.exports = WorkerService;

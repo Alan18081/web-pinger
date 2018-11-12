@@ -1,4 +1,4 @@
-const Worker = require('./Worker');
+const Worker = require('./components/workers/worker.service');
 
 const userId = process.argv[2];
 

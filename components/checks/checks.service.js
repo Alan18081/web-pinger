@@ -8,7 +8,7 @@ class ChecksService {
 		this.folder = 'checks';
 	}
 
-	async findAll(userId) {
+	async findByUserId(userId) {
 		return await files.list(`${this.folder}/${userId}`);
 	}
 
@@ -36,9 +36,12 @@ class ChecksService {
 	}
 
 	async deleteOne(id, userId) {
-		await files.delete(`${this.folder}/${userId}`, id);
+		await files.deleteFile(`${this.folder}/${userId}`, id);
 	}
 
+	async deleteByUserId(id) {
+		await files.deleteFolder(this.folder, id);
+	}
 }
 
 module.exports = new ChecksService();

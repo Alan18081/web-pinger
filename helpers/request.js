@@ -1,20 +1,12 @@
 const http = require('http');
 
-function request(config, module, data = '', headers = {}) {
+function request(config, module, data = '') {
 	const httpModule = module || http;
 	return new Promise((resolve, reject) => {
 		const req = httpModule.request(config, res => {
+			console.log(res.statusCode);
 			resolve(res);
 		});
-
-
-		for(const headerName in headers) {
-			if(headers.hasOwnProperty(headerName)) {
-				req.setHeader(headerName, headers[headerName]);
-			}
-		}
-
-		console.log('Header', req.getHeader('Content-Type'));
 
 		req.on('error', error => {
 			reject(error);

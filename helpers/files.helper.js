@@ -12,6 +12,7 @@ fs.mkdir = util.promisify(fs.mkdir);
 fs.unlink = util.promisify(fs.unlink);
 fs.truncate = util.promisify(fs.truncate);
 fs.appendFile = util.promisify(fs.appendFile);
+fs.rename = util.promisify(fs.rename);
 
 class Files {
 	constructor(dir) {
@@ -46,9 +47,7 @@ class Files {
 
 	async appendFile(dir, file, data, ext = 'json') {
 		await this.prepareDir(dir);
-		const stringifiedData = JSON.stringify(data);
-		console.log(stringifiedData);
-		await fs.appendFile(path.join(this.baseDir, `/${dir}/${file}.${ext}`), stringifiedData);
+		await fs.appendFile(path.join(this.baseDir, `/${dir}/${file}.${ext}`), data);
 	}
 
 	async prepareDir(dir) {
@@ -67,11 +66,13 @@ class Files {
 	}
 
 	async read(dir, file, ext = 'json') {
+		await this.prepareDir(dir);
 		const data = await fs.readFile(path.join(this.baseDir, `/${dir}/${file}.${ext}`), 'utf8');
 		return helpers.parseJson(data);
 	}
 
 	async update(dir, file, data, ext = 'json') {
+		await this.prepareDir(dir);
 		const fileDescriptor = await fs.open(path.join(this.baseDir, `/${dir}/${file}.${ext}`), 'r+');
 		const oldStringData = await fs.readFile(fileDescriptor, 'utf8');
 		const oldData = helpers.parseJson(oldStringData);
@@ -91,8 +92,22 @@ class Files {
 		return newData;
 	}
 
-	async delete(dir, file, ext = 'json') {
+	async renameOne(dir, oldFilename, newFilename, oldExt = 'json', newExt = 'json') {
+		await this.prepareDir(dir);
+		const oldPath = path.join(this.baseDir, `/${dir}/${oldFilename}.${oldExt}`);
+		const newPath = path.join(this.baseDir, `/${dir}/${newFilename}.${newExt}`);
+		await fs.rename(oldPath, newPath);
+	}
+
+	async deleteFile(dir, file, ext = 'json') {
+		await this.prepareDir(dir);
 		await fs.unlink(path.join(this.baseDir, `/${dir}/${file}.${ext}`));
+	}
+
+	async deleteFolder(baseDir, dir) {
+		await this.prepareDir(baseDir);
+		await this.prepareDir(dir);
+		await fs.unlink(path.join(this.baseDir, `/${baseDir}/${dir}`));
 	}
 }
 

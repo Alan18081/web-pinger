@@ -12,13 +12,14 @@ module.exports = {
 	get: {
 		'users': auth(usersController.findAll),
 		'checks/:id': auth(checksController.findOne),
-		'checks': auth(checksController.findAll),
+		'checks': auth(checksController.findByUse),
 	},
 	put: {
 		'checks/:id': auth(checksController.updateOne),
-		'/users/:id': auth(usersController.updateOne)
+		'/profile': auth(usersController.updateOne)
 	},
 	delete: {
-		'checks/:id': auth(checksController.deleteOne)
+		'checks/:id': auth(checksController.deleteOne),
+		'users': auth(usersController.deleteOne)
 	}
 };

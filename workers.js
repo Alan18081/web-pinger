@@ -4,7 +4,7 @@ const Files = require('./helpers/files.helper');
 const files = new Files('.data');
 
 class Workers {
-	async runWorkers() {
+	async run() {
 		const usersDirectories = await files.filesList('checks');
 		usersDirectories.forEach(dir => {
 			fork('./childWorker.js', [dir]);
@@ -12,6 +12,4 @@ class Workers {
 	}
 }
 
-const workers = new Workers();
-
-workers.runWorkers();
+module.exports = new Workers();

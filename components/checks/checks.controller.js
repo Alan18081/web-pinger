@@ -25,8 +25,8 @@ class ChecksController {
 		}
 	}
 
-	async findAll({ user }) {
-		const checks = await checksService.findAll(user.id);
+	async findByUserId({ user }) {
+		const checks = await checksService.findByUserId(user.id);
 		return new HttpResponse(HttpCodes.SUCCESS, checks);
 	}
 

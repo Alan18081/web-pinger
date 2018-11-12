@@ -1,15 +1,17 @@
 class Email {
 	constructor(senderEmail, receiverEmail, title, content) {
-		this.personalizations = [
-			{ email: receiverEmail }
-		];
-
-		this.subject = title;
+		this.personalizations = [ {
+			to: [
+				{email: receiverEmail}
+			],
+			subject: title
+		} ];
 
 		this.from = { email: senderEmail };
 
-		this.content = { type: 'text/plain', value: content }
-
+		this.content = [
+			{ type: 'text/plain', value: content }
+		];
 	}
 }
 

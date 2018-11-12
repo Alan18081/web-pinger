@@ -1,15 +1,24 @@
 const server = require('./server');
-// const workers = require('./worker');
+const workers = require('./workers');
 const cli = require('./lib/cli');
+const cluster = require('cluster');
+const os = require('os');
 
 const app = {
 	init() {
-		server.init();
-		// workers.init();
+		if(cluster.isMaster) {
+			workers.run();
 
-		// setTimeout(() => {
-		// 	cli.init();
-		// }, 50);
+			setTimeout(() => {
+				cli.init();
+			}, 50);
+
+			for(let i = 0; i < os.cpus().length; i++) {
+				cluster.fork();
+			}
+		} else {
+			server.run();
+		}
 	}
 };
 

@@ -7,6 +7,7 @@ class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
+		this.checksSize = 0;
 	}
 }
 
