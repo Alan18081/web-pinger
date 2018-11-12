@@ -1,5 +1,7 @@
 const Check = require('./check.entity');
-const files = require('../../helpers/files.helper');
+const Files = require('../../helpers/files.helper');
+
+const files = new Files('.data');
 
 class ChecksService {
 	constructor() {

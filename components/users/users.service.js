@@ -1,8 +1,10 @@
 const User = require('./user.entity');
-const files = require('../../helpers/files.helper');
+const Files = require('../../helpers/files.helper');
 const cryptHelper = require('../../helpers/crypt.helper');
 const HttpResponse = require('../../helpers/http/http-response');
 const HttpCodes = require('../../helpers/http/http-codes');
+
+const files = new Files('.data');
 
 class UsersService {
 	constructor() {

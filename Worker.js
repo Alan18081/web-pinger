@@ -1,10 +1,13 @@
 const http = require('http');
 const https = require('https');
 const util = require('util');
-const files = require('./helpers/files.helper');
+const Files = require('./helpers/files.helper');
 const url = require('url');
 const request = require('./helpers/request');
 const SiteStatuses = require('./helpers/site-statuses');
+const logs = require('./components/logs/logs.service');
+
+const files = new Files('.data');
 
 class Worker {
 	constructor(userId) {
@@ -15,7 +18,7 @@ class Worker {
 	loop() {
 		setInterval(() => {
 			this.mapChecks();
-		}, 1000 * 60);
+		}, 1000 );
 	}
 
 	watchChanges() {
@@ -28,7 +31,6 @@ class Worker {
 
 	async mapChecks() {
 		await Promise.all(this.checks.map(this.performCheck));
-
 	}
 
 	async performCheck(checkData) {
@@ -57,7 +59,7 @@ class Worker {
 			}
 
 			await files.update(`checks/${checkData.userId}`, checkData.id, checkData);
-
+			await logs.appendNewLog(checkData, statusCode);
 
 		} catch (e) {
 
@@ -70,6 +72,8 @@ class Worker {
 		await this.loadChecks();
 		this.watchChanges();
 		this.loop();
+
+		console.log('Worker for user', this.userId, 'started');
 	}
 }
 
