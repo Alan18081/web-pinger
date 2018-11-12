@@ -4,10 +4,6 @@ const Files = require('./helpers/files.helper');
 const files = new Files('.data');
 
 class Workers {
-	constructor() {
-
-	}
-
 	async runWorkers() {
 		const usersDirectories = await files.filesList('checks');
 		usersDirectories.forEach(dir => {

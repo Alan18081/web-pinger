@@ -9,10 +9,8 @@ environments.staging = {
 	hashSecret: 'Some secret',
 	maxChecks: 5,
 	passwordLength: 6,
-	twilio: {
-		fromPhone: '+380500337230',
-		accountSid: 'AC29c4b0e7393e7fa4a1a19f4dcf312463',
-		authToken: '9bc3499fc7e72b6a4520cb1ffad1dba5'
+	sendgrid: {
+		apiKey: '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'
 	}
 };
 
@@ -23,10 +21,8 @@ environments.testing = {
   hashSecret: 'Some secret',
   maxChecks: 5,
 	passwordLength: 6,
-  twilio: {
-    fromPhone: '+380500337230',
-    accountSid: 'AC29c4b0e7393e7fa4a1a19f4dcf312463',
-    authToken: '9bc3499fc7e72b6a4520cb1ffad1dba5'
+  sendgrid: {
+    apiKey: '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'
   }
 };
 
@@ -38,11 +34,9 @@ environments.production = {
 	hashSecret: 'Some production secret',
 	maxChecks: 5,
 	passwordLength: 6,
-	twilio: {
-		fromPhone: '380662714786',
-		accountSid: 'AC29c4b0e7393e7fa4a1a19f4dcf312463',
-		authToken: '9bc3499fc7e72b6a4520cb1ffad1dba5'
-	}
+  sendgrid: {
+    apiKey: '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'
+  }
 };
 
 // Define current environment

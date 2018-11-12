@@ -11,7 +11,7 @@ fs.readdir = util.promisify(fs.readdir);
 fs.mkdir = util.promisify(fs.mkdir);
 fs.unlink = util.promisify(fs.unlink);
 fs.truncate = util.promisify(fs.truncate);
-// fs.appendFile = util.promisify(fs.appendFile);
+fs.appendFile = util.promisify(fs.appendFile);
 
 class Files {
 	constructor(dir) {

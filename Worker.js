@@ -2,12 +2,14 @@ const http = require('http');
 const https = require('https');
 const util = require('util');
 const Files = require('./helpers/files.helper');
+const EmailsService = require('./components/email/emails.service');
 const url = require('url');
 const request = require('./helpers/request');
 const SiteStatuses = require('./helpers/site-statuses');
 const logs = require('./components/logs/logs.service');
 
 const files = new Files('.data');
+const emailsService = new EmailsService('gogunov00@gmail.com');
 
 class Worker {
 	constructor(userId) {
@@ -27,6 +29,10 @@ class Worker {
 
 	async loadChecks() {
 		this.checks = await files.list(`checks/${this.userId}`);
+	}
+
+	async rotateLogs() {
+
 	}
 
 	async mapChecks() {
@@ -49,7 +55,7 @@ class Worker {
 		try {
 			const module = checkData.protocol === 'http' ? http : https;
 
-			const res = await request(module, requestConfig);
+			const res = await request(requestConfig, module);
 			const { statusCode } = res;
 
 			if(checkData.successCodes.indexOf(statusCode) !== -1) {
@@ -60,6 +66,7 @@ class Worker {
 
 			await files.update(`checks/${checkData.userId}`, checkData.id, checkData);
 			await logs.appendNewLog(checkData, statusCode);
+			await emailsService.sendEmail('alexostapiuk00@gmail.com', 'Test title', 'Test content');
 
 		} catch (e) {
 
