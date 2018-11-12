@@ -7,7 +7,6 @@ function request(config, module, data = '', headers = {}) {
 			resolve(res);
 		});
 
-		console.log(headers);
 
 		for(const headerName in headers) {
 			if(headers.hasOwnProperty(headerName)) {
@@ -15,7 +14,7 @@ function request(config, module, data = '', headers = {}) {
 			}
 		}
 
-		console.log(req.getHeader('Authorization'));
+		console.log('Header', req.getHeader('Content-Type'));
 
 		req.on('error', error => {
 			reject(error);
