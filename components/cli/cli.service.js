@@ -7,13 +7,12 @@ const checkService = require('../checks/checks.service');
 const logsService = require('../logs/logs.service');
 
 const COMMANDS = {
-	man: 'man',
 	help: 'help',
 	exit: 'exit',
 	stats: 'stats',
-	listUsers: 'list users',
+	users: 'users',
 	moreUserInfo: 'more user info',
-	listChecks: 'list checks',
+	checks: 'checks',
 	moreCheckInfo: 'more check info',
 	listLogs: 'list logs',
 	moreLogInfo: 'more log info'
@@ -21,12 +20,13 @@ const COMMANDS = {
 
 class CliService {
 	constructor() {
+		this.commands = COMMANDS;
 		this.commandsDescriptions = {
 			[COMMANDS.exit]: 'Kill the cli (and whole app)',
 			[COMMANDS.man]: 'Display available commands for that cli',
 			[COMMANDS.help]: 'Alias for "man"',
 			[COMMANDS.stats]: 'Shows statistic for computer resources, that are consumed and available',
-			[COMMANDS.listUsers]: 'Show list of all available users',
+			[COMMANDS.users]: 'Show list of all available users',
 			[`${COMMANDS.moreUserInfo} --{userId}`] : 'Show info for particular user',
 			[`${COMMANDS.listChecks} --up --down`]: 'Show list of all checks ("--up" and "--down" are optional)',
 			[`${COMMANDS.moreCheckInfo} --{checkId}`]: 'Show info for particular check',
@@ -85,9 +85,7 @@ class CliService {
 		}
 	}
 
-	async moreUserInfo(str) {
-		const commandsArray = str.split('--');
-		const userId = typeof commandsArray[1] === 'string' && commandsArray.length > 0 ? commandsArray[1] : false;
+	async moreUserInfo(userId) {
 		if(userId) {
 			if(userId.indexOf('@') !== -1) {
 				try {
@@ -110,7 +108,7 @@ class CliService {
 
 	}
 
-	async listChecks(str) {
+	async listChecks() {
 		const checks = await checkService.findByUserId(userId);
 
 		checks.forEach(check => {
@@ -124,12 +122,16 @@ class CliService {
 		});
 	}
 
-	moreCheckInfo(str) {
+	async moreCheckInfo(userId, checkId) {
 		const commandsArray = str.split('--');
 		const checkId = typeof commandsArray[1] === 'string' && commandsArray.length > 0 ? commandsArray[1] : false;
 
 		if(checkId) {
-
+			try {
+				const checkData = await checkService.findOne()
+			} catch (e) {
+				console.log('Failed to get check by ID');
+			}
 		} else {
 			cliHelpers.error('Invalid check\'s ID');
 		}
