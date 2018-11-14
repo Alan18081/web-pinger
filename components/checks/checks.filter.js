@@ -1,9 +1,25 @@
 const HttpError = require('../../helpers/http/http-error');
 
 class ChecksFilter {
-	get(data) {
+	findByUserId(query) {
+
+		if (Boolean(query.unlimit)) {
+			return false;
+		}
+
+		if (!query.page || typeof Number(query.page) !== 'number') {
+			return new HttpError('Param "page" should be a number');
+		}
+
+		if (!query.limit || typeof Number(query.limit) !== 'number') {
+			return new HttpError('Param "limit" should be a number');
+		}
+
+		query.limit = Number(query.limit);
+		query.page = Number(query.page);
 
 	}
+
 
 	createOne({ body }) {
 
@@ -80,7 +96,7 @@ class ChecksFilter {
 		}
 
 		if(!isNewDataExists) {
-			return new HttpError('No data to update');
+			return new HttpError('No .data to update');
 		}
 	}
 }

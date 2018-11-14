@@ -17,7 +17,6 @@ class UsersService {
 	async findByEmail(email) {
 		const filesList = await files.filesList(this.folder);
 		const userFilename = filesList.find(filename => filename.indexOf(email) !== -1);
-		console.log(userFilename);
 		if(userFilename) {
 			return await files.read(this.folder, userFilename.replace(/.json/, ''));
 		}
@@ -32,7 +31,7 @@ class UsersService {
 	}
 
 	createUserFilename(id, email) {
-		return `${id}:${email}`;
+		return `${id}-${email}`;
 	}
 
 	async createUser({ body }) {

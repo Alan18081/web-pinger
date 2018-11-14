@@ -41,6 +41,8 @@ function pathParser(url, router) {
 			}
 		}
 	}
+
+	return {};
 }
 
 function parseJson(string) {

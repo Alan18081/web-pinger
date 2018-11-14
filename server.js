@@ -54,7 +54,7 @@ class Server {
 			body
 		};
 
-		const { handler, params = {} } = helpers.pathParser(trimmedPath, this.router[method]);
+		const { handler = router.any.notFound, params = {} } = helpers.pathParser(trimmedPath, this.router[method]);
 		let responseData = {};
 
 		if(handler) {

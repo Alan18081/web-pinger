@@ -49,7 +49,7 @@ class UsersFilter {
 		}
 
 		if(!isNewDataExists) {
-			return new HttpError('No data to update');
+			return new HttpError('No .data to update');
 		}
 
 	}

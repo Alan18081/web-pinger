@@ -10,7 +10,7 @@ fs.readFile = util.promisify(fs.readFile);
 fs.readdir = util.promisify(fs.readdir);
 fs.mkdir = util.promisify(fs.mkdir);
 fs.unlink = util.promisify(fs.unlink);
-fs.truncate = util.promisify(fs.truncate);
+fs.ftruncate = util.promisify(fs.ftruncate);
 fs.appendFile = util.promisify(fs.appendFile);
 fs.rename = util.promisify(fs.rename);
 
@@ -19,13 +19,23 @@ class Files {
 		this.baseDir = path.join(__dirname, `/../${dir}`);
 	}
 
-	async list(dir, ext = 'json') {
+	async list(dir, ext = 'json', params) {
 		await this.prepareDir(dir);
 
 		const filenamesList = await fs.readdir(path.join(this.baseDir, `/${dir}/`));
-		return await Promise.all(filenamesList.map(filename => {
+
+		let sizedFilenames;
+
+		if(!params) {
+			sizedFilenames = filenamesList;
+		} else {
+			sizedFilenames = filenamesList.slice(params.offset, params.offset + params.limit);
+		}
+
+		return await Promise.all(sizedFilenames.map(filename => {
 			return this.read(dir, filename.replace(`.${ext}`, ''));
 		}));
+
 	}
 
 	createReadStream(filename) {
@@ -82,7 +92,7 @@ class Files {
 			...data
 		};
 
-		await fs.truncate(fileDescriptor, 0);
+		await fs.ftruncate(fileDescriptor, 0);
 
 		const stringifiedData = JSON.stringify(newData);
 

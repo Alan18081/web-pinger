@@ -8,8 +8,16 @@ class ChecksService {
 		this.folder = 'checks';
 	}
 
-	async findByUserId(userId) {
-		return await files.list(`${this.folder}/${userId}`);
+	async findByUserId(userId, query) {
+		if(!query.unlimit) {
+			return await files.list(
+				`${this.folder}/${userId}`,
+				'json',
+				{ offset: query.page * query.limit - query.limit, limit: query.limit}
+				);
+		} else {
+			return await files.list(`${this.folder}/${userId}`);
+		}
 	}
 
 	async findOne(checkId, userId) {

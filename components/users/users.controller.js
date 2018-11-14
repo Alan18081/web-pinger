@@ -20,8 +20,6 @@ class UsersController {
 
 			const user = await usersService.findByEmail(data.body.email);
 
-			console.log(data.body.email);
-
 			if(user) {
 				return new HttpResponse(
 					HttpCodes.CONFLICT,

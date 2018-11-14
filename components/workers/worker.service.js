@@ -21,7 +21,7 @@ class WorkerService {
 	loop() {
 		setInterval(() => {
 			this.mapChecks();
-		}, 1000 );
+		}, 1000 * 60 * 5);
 	}
 
 	rotateLoop() {
