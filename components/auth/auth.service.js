@@ -5,7 +5,7 @@ class AuthService {
 
 	async validateToken(token) {
 		const email = cryptHelper.decrypt(token);
-		const user = await usersService.findOne(email);
+		const user = await usersService.findByEmail(email);
 		return user;
 	}
 

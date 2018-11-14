@@ -15,7 +15,9 @@ class AuthController {
 			return new HttpResponse(HttpCodes.BAD_REQUEST, error);
 		}
 
-		const user = await usersService.findOne(data.body.email);
+		console.log(data.body.email);
+
+		const user = await usersService.findByEmail(data.body.email);
 
 		if(!user) {
 			return new HttpResponse(HttpCodes.NOT_FOUND, new HttpError('User not found'));

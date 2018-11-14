@@ -17,7 +17,12 @@ class UsersService {
 	async findByEmail(email) {
 		const filesList = await files.filesList(this.folder);
 		const userFilename = filesList.find(filename => filename.indexOf(email) !== -1);
-		return await files.read('users', userFilename);
+		console.log(userFilename);
+		if(userFilename) {
+			return await files.read(this.folder, userFilename.replace(/.json/, ''));
+		}
+		return false;
+
 	}
 
 	async findById(userId) {
