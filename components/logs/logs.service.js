@@ -20,6 +20,10 @@ class LogsService {
 		return await Promise.all(compressedlogs.map(this.decompress));
 	}
 
+	async findAllUncompressedLogs() {
+		return await files.list(this.uncompressedFolder, 'log');
+	}
+
 	async findUncompressedLog(logId) {
 		return await files.read(this.uncompressedFolder, logId, 'log');
 	}

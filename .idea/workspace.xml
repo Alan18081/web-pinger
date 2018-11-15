@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="016effbd-525b-41c9-8677-111a58040ec9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/cli/commands.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/checks/checks.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/checks/checks.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/checks/checks.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/checks/checks.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.logs/uncompressed/92985887286e71d953893f409d9418fa.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/components/cli/cli.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/cli/cli.handler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/cli/cli.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/cli/cli.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/users/users.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/users/users.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers/cli.helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/helpers/cli.helper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/cli/commands.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/cli/commands.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/logs/logs.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/logs/logs.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/workers/worker.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/worker.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers/files.helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/helpers/files.helper.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +33,9 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="ini" value="1" />
-          <entry key="js" value="11" />
+          <entry key="js" value="17" />
           <entry key="json" value="5" />
+          <entry key="log" value="9" />
           <entry key="ts" value="1" />
         </counts>
       </usages-collector>
@@ -44,7 +43,8 @@
         <counts>
           <entry key="Ini" value="1" />
           <entry key="JSON" value="5" />
-          <entry key="JavaScript" value="11" />
+          <entry key="JavaScript" value="17" />
+          <entry key="PLAIN_TEXT" value="9" />
           <entry key="TypeScript" value="1" />
         </counts>
       </usages-collector>
@@ -55,13 +55,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="2775" />
+          <entry key="js" value="3282" />
           <entry key="ts" value="1316" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="2775" />
+          <entry key="JavaScript" value="3282" />
           <entry key="TypeScript" value="1316" />
         </counts>
       </usages-collector>
@@ -70,28 +70,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/users/users.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/cli/commands.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/checks/checks.service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="279">
+              <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -99,17 +81,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/cli/cli.handler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2263">
-              <caret line="73" column="50" lean-forward="true" selection-start-line="73" selection-start-column="50" selection-end-line="73" selection-end-column="50" />
+            <state relative-caret-position="533">
+              <caret line="73" column="54" selection-start-line="73" selection-start-column="54" selection-end-line="73" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/cli/cli.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="599">
-              <caret line="85" column="52" selection-start-line="85" selection-start-column="52" selection-end-line="85" selection-end-column="52" />
+            <state relative-caret-position="248">
+              <caret line="155" column="48" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="48" />
               <folding>
                 <element signature="n#!!block;n#constructor#0;n#CliService#0" />
                 <element signature="n#!!block;n#help#0;n#CliService#0" />
@@ -120,10 +102,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/helpers/cli.helper.js">
+        <entry file="file://$PROJECT_DIR$/components/workers/worker.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="31">
-              <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+            <state relative-caret-position="565">
+              <caret line="78" column="30" selection-start-line="78" selection-start-column="30" selection-end-line="78" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/logs/logs.service.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="498">
+              <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/helpers/files.helper.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="24" column="80" selection-start-line="24" selection-start-column="80" selection-end-line="24" selection-end-column="80" />
             </state>
           </provider>
         </entry>
@@ -146,13 +146,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/text.txt" />
-        <option value="$PROJECT_DIR$/helpers/files.helper.js" />
         <option value="$PROJECT_DIR$/workers.js" />
-        <option value="$PROJECT_DIR$/components/logs/logs.service.js" />
         <option value="$PROJECT_DIR$/components/email/email.service.js" />
         <option value="$PROJECT_DIR$/Worker.js" />
         <option value="$PROJECT_DIR$/config.js" />
-        <option value="$PROJECT_DIR$/components/email/emails.service.js" />
         <option value="$PROJECT_DIR$/helpers/request.js" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/components/users/users.controller.js" />
@@ -161,11 +158,15 @@
         <option value="$PROJECT_DIR$/data.ts" />
         <option value="$PROJECT_DIR$/components/users/users.service.js" />
         <option value="$PROJECT_DIR$/components/checks/checks.controller.js" />
-        <option value="$PROJECT_DIR$/components/cli/commands.js" />
         <option value="$PROJECT_DIR$/components/checks/checks.service.js" />
-        <option value="$PROJECT_DIR$/components/cli/cli.handler.js" />
         <option value="$PROJECT_DIR$/helpers/cli.helper.js" />
+        <option value="$PROJECT_DIR$/components/cli/commands.js" />
+        <option value="$PROJECT_DIR$/components/cli/cli.handler.js" />
+        <option value="$PROJECT_DIR$/components/workers/worker.service.js" />
+        <option value="$PROJECT_DIR$/components/email/emails.service.js" />
+        <option value="$PROJECT_DIR$/components/logs/logs.service.js" />
         <option value="$PROJECT_DIR$/components/cli/cli.service.js" />
+        <option value="$PROJECT_DIR$/helpers/files.helper.js" />
       </list>
     </option>
   </component>
@@ -216,9 +217,7 @@
             <path>
               <item name="site-checker" type="b2602c69:ProjectViewProjectNode" />
               <item name="site-checker" type="462c0819:PsiDirectoryNode" />
-              <item name=".data" type="462c0819:PsiDirectoryNode" />
-              <item name="checks" type="462c0819:PsiDirectoryNode" />
-              <item name="2902653d9892bad27ec928361c1b6e96" type="462c0819:PsiDirectoryNode" />
+              <item name=".logs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="site-checker" type="b2602c69:ProjectViewProjectNode" />
@@ -229,13 +228,7 @@
               <item name="site-checker" type="b2602c69:ProjectViewProjectNode" />
               <item name="site-checker" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="checks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="site-checker" type="b2602c69:ProjectViewProjectNode" />
-              <item name="site-checker" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="cli" type="462c0819:PsiDirectoryNode" />
+              <item name="workers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -277,18 +270,18 @@
       <workItem from="1542023927246" duration="513000" />
       <workItem from="1542034634345" duration="4589000" />
       <workItem from="1542282809327" duration="2028000" />
-      <workItem from="1542285467727" duration="6748000" />
+      <workItem from="1542285467727" duration="8064000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8787000" />
+    <option name="totallyTimeSpent" value="10103000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-4" width="1920" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19263607" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19263607" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -322,23 +315,10 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/data/users/ff9f80bdebd4be8aa8845409c22d12c5-gogunov00@gmail.com.json" />
-    <entry file="file://$PROJECT_DIR$/components/email/emails.service.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/logs/logs.service.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/workers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/workers/worker.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -376,9 +356,6 @@
           <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.logs/uncompressed/92985887286e71d953893f409d9418fa.log">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -436,13 +413,6 @@
     <entry file="file://$PROJECT_DIR$/.data/checks/2902653d9892bad27ec928361c1b6e96/1497314aa2da390ff74cdda6c956414d.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/helpers/files.helper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-241">
-          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.data/users/2902653d9892bad27ec928361c1b6e96-gogunov00@gmail.com.json">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -464,13 +434,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/cli/cli.handler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2263">
-          <caret line="73" column="50" lean-forward="true" selection-start-line="73" selection-start-column="50" selection-end-line="73" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.data/checks/2902653d9892bad27ec928361c1b6e96/3f9081a408eb84da3bf1cdb302113e13.json">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -485,17 +448,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/cli/commands.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/users/users.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
           <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/cli/commands.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/cli/cli.handler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="73" column="54" selection-start-line="73" selection-start-column="54" selection-end-line="73" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -506,15 +476,63 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.logs/uncompressed/3f9081a408eb84da3bf1cdb302113e13.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.logs/uncompressed/92985887286e71d953893f409d9418fa.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helpers/http/http-codes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="1" column="2" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/email/emails.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="937">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.logs/uncompressed/1497314aa2da390ff74cdda6c956414d.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/workers/worker.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="565">
+          <caret line="78" column="30" selection-start-line="78" selection-start-column="30" selection-end-line="78" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/components/cli/cli.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="85" column="52" selection-start-line="85" selection-start-column="52" selection-end-line="85" selection-end-column="52" />
+        <state relative-caret-position="248">
+          <caret line="155" column="48" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="48" />
           <folding>
             <element signature="n#!!block;n#constructor#0;n#CliService#0" />
             <element signature="n#!!block;n#help#0;n#CliService#0" />
             <element signature="n#!!block;n#stats#0;n#CliService#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/logs/logs.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helpers/files.helper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="24" column="80" selection-start-line="24" selection-start-column="80" selection-end-line="24" selection-end-column="80" />
         </state>
       </provider>
     </entry>

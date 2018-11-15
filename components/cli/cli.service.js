@@ -1,7 +1,6 @@
 const cliHelpers = require('../../helpers/cli.helper');
 const v8 = require('v8');
 const os = require('os');
-const { spawn } = require('child_process');
 const usersService = require('../users/users.service');
 const checkService = require('../checks/checks.service');
 const logsService = require('../logs/logs.service');
@@ -150,26 +149,18 @@ class CliService {
 		}
 	}
 
-	listLogs(str) {
+	async listLogs() {
 		cliHelpers.header('ALL LOGS');
 
-		const ls = spawn('ls', ['./public/']);
+		try {
+      const logs = await logsService.findAllUncompressedLogs();
+      console.log(logs);
+      cliHelpers.renderArray(logs);
+		} catch (e) {
+      cliHelpers.error('Failed to load log\'s list', e);
+    }
 
-		ls.stdout.on('data', dataObj => {
-			const dataStr = dataObj.toString();
-			console.log(dataStr);
-		});
 
-		// logs.list(true, (err, logsList) => {
-		//   if(!err && logsList && logsList.length > 0) {
-		//     logsList.forEach(filename => {
-		//     	console.log(filename);
-		//     	cli.verticalSpace();
-		// 	});
-		//   } else {
-		//     cli.error('Failed to load log\'s list', err);
-		//   }
-		// });
 	}
 
 	async moreLogInfo(str) {

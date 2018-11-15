@@ -7,6 +7,6 @@ module.exports = {
   checks: 'checks',
   checksByUserId: 'checks by user ID',
   moreCheckInfo: 'more check info',
-  listLogs: 'list logs',
+  logs: 'logs',
   moreLogInfo: 'more log info'
 };

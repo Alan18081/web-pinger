@@ -36,6 +36,8 @@ class CliHandler {
 				case COMMANDS.checks:
 					this.emitter.emit(COMMANDS.checks);
 					break;
+        case COMMANDS.logs:
+          this.emitter.emit(COMMANDS.logs);
 			}
 		} else {
 			const args = {};
@@ -68,6 +70,8 @@ class CliHandler {
     this.emitter.on(COMMANDS.stats, cliService.stats);
 
     this.emitter.on(COMMANDS.users, cliService.listUsers);
+
+    this.emitter.on(COMMANDS.logs, cliService.listLogs);
 
     this.emitter.on(COMMANDS.moreUserInfo, cliService.moreUserInfo);
 

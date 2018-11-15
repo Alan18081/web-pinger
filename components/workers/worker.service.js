@@ -21,7 +21,7 @@ class WorkerService {
 	loop() {
 		setInterval(() => {
 			this.mapChecks();
-		}, 1000 * 60 * 5);
+		}, 1000 * 10);
 	}
 
 	rotateLoop() {
@@ -70,6 +70,8 @@ class WorkerService {
 			} else {
 				checkData.status = SiteStatuses.down;
 			}
+
+			console.log(checkData);
 
 			await files.update(`checks/${checkData.userId}`, checkData.id, checkData);
 			const userData = await usersService.findById(checkData.userId);

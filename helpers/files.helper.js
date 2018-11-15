@@ -33,7 +33,7 @@ class Files {
 		}
 
 		return await Promise.all(sizedFilenames.map(filename => {
-			return this.read(dir, filename.replace(`.${ext}`, ''));
+			return this.read(dir, filename.replace(`.${ext}`, ''), ext);
 		}));
 
 	}
@@ -77,8 +77,12 @@ class Files {
 
 	async read(dir, file, ext = 'json') {
 		await this.prepareDir(dir);
-		const data = await fs.readFile(path.join(this.baseDir, `/${dir}/${file}.${ext}`), 'utf8');
+		const data = await this.readRaw(path.join(this.baseDir, `/${dir}/${file}.${ext}`));
 		return helpers.parseJson(data);
+	}
+
+	async readRaw(path) {
+		return await fs.readFile(path, 'utf8');
 	}
 
 	async update(dir, file, data, ext = 'json') {
