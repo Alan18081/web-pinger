@@ -5,22 +5,10 @@ const { spawn } = require('child_process');
 const usersService = require('../users/users.service');
 const checkService = require('../checks/checks.service');
 const logsService = require('../logs/logs.service');
-
-const COMMANDS = {
-	help: 'help',
-	exit: 'exit',
-	stats: 'stats',
-	users: 'users',
-	moreUserInfo: 'more user info',
-	checks: 'checks',
-	moreCheckInfo: 'more check info',
-	listLogs: 'list logs',
-	moreLogInfo: 'more log info'
-};
+const COMMANDS = require('./commands');
 
 class CliService {
 	constructor() {
-		this.commands = COMMANDS;
 		this.commandsDescriptions = {
 			[COMMANDS.exit]: 'Kill the cli (and whole app)',
 			[COMMANDS.man]: 'Display available commands for that cli',
@@ -74,11 +62,7 @@ class CliService {
 			const users = await usersService.findAll();
 
 			users.forEach(user => {
-				console.log(`
-					Name: ${user.firstName} ${user.lastName}\n
-					Email: ${user.email}\n
-					Number of checks: ${user.checksSize}
-				`);
+				console.log(cliHelpers.renderObject(user));
 			});
 		} catch (e) {
 			cliHelpers.error('Failed to load user\' info', e);
@@ -99,7 +83,7 @@ class CliService {
 				try {
 					const user = await usersService.findById(userId);
 					cliHelpers.header('User Info');
-					console.dir(user, { colors: true });
+					console.log(cliHelpers.renderObject(user));
 				} catch (e) {
 					cliHelpers.error('Failed to get user by ID', e);
 				}
@@ -111,31 +95,58 @@ class CliService {
 	}
 
 	async listChecks() {
-		const checks = await checkService.findAll();
 
-		checks.forEach(check => {
-			const line = `
-				ID: ${check.id}\n
-				Url: ${check.protocol}://${check.url}\n
-				Status: ${check.status}
-			`;
-			console.log(line);
-			cliHelpers.verticalSpace();
-		});
+		try {
+      const checks = await checkService.findAll();
+
+      cliHelpers.renderArray(checks);
+		} catch (e) {
+			cliHelpers.error('Failed to load checks', e);
+    }
 	}
 
-	async moreCheckInfo(userId, checkId) {
-		const commandsArray = str.split('--');
-		const checkId = typeof commandsArray[1] === 'string' && commandsArray.length > 0 ? commandsArray[1] : false;
+	async moreCheckInfo(checkId) {
 
 		if(checkId) {
 			try {
-				const checkData = await checkService.findOne()
+        const userIds = await usersService.findAllUserIds();
+        let check;
+        await Promise.all(userIds.map(async userId => {
+          check = await checkService.findOne(userId, checkId);
+        }));
+
+        if(!check) {
+          console.log('Failed to get check by ID');
+					return;
+        }
+
+        console.dir(cliHelpers.renderObject(check));
+
 			} catch (e) {
-				console.log('Failed to get check by ID');
+				console.log('Failed to get check by ID', e);
 			}
 		} else {
 			cliHelpers.error('Invalid check\'s ID');
+		}
+	}
+
+	async listChecksByUserId(userId) {
+		if(userId) {
+      cliHelpers.header('ALL CHECKS FOR USER ID', userId);
+			try {
+
+				const checks = await checkService.findByUserId(userId);
+
+				if(checks.length === 0) {
+					cliHelpers.centered('No checks found');
+					return;
+				}
+
+				cliHelpers.renderArray(checks);
+
+			} catch (e) {
+				cliHelpers.error('Failed to load checks for particular user', e);
+      }
 		}
 	}
 

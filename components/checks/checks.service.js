@@ -10,28 +10,30 @@ class ChecksService {
 
 	async findAll() {
 		const userFolders = await files.filesList(this.folder);
-		const checks = [];
+		let checks = [];
 		await Promise.all(userFolders.map(async folder => {
 			const userChecks = await this.findByUserId(folder);
-			checks.concat(userChecks);
+			checks = checks.concat(userChecks);
 		}));
 
 		return checks;
 	}
 
 	async findByUserId(userId, query) {
-		if(!query.unlimit) {
+
+		if(query && !query.unlimit) {
 			return await files.list(
 				`${this.folder}/${userId}`,
 				'json',
 				{ offset: query.page * query.limit - query.limit, limit: query.limit}
-				);
+			);
 		} else {
 			return await files.list(`${this.folder}/${userId}`);
 		}
+
 	}
 
-	async findOne(checkId, userId) {
+	async findOne(userId, checkId) {
 		return await files.read(`${this.folder}/${userId}`, checkId);
 	}
 

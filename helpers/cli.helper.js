@@ -6,6 +6,19 @@ class CliHelper {
 		}
 	}
 
+	renderObject(object) {
+		this.verticalSpace();
+		let dataStr = '';
+		for(let key in object) {
+			if(object.hasOwnProperty(key)) {
+				const line = `\x1b[34m${key}\x1b[0m: ${object[key]}\n`;
+				dataStr += line;
+			}
+		}
+
+		return dataStr;
+	}
+
 	horizontalLine() {
 		const width = process.stdout.columns;
 
@@ -63,6 +76,17 @@ class CliHelper {
 			}
 		}
 	};
+
+	renderArray(array) {
+		array.forEach(item => {
+			if(typeof item === 'object') {
+				console.log(this.renderObject(item));
+				this.verticalSpace();
+			} else {
+				console.log(item);
+			}
+		});
+	}
 }
 
 module.exports = new CliHelper();

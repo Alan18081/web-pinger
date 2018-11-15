@@ -53,7 +53,7 @@ class ChecksController {
 			return new HttpResponse(HttpCodes.BAD_REQUEST, error);
 		}
 		try {
-			const check = await checksService.findOne(params.id, user.id);
+			const check = await checksService.findOne(user.id, params.id);
 			console.log(check);
 			if(!check) {
 				return new HttpResponse(HttpCodes.NOT_FOUND, new HttpError('Check was not found'));
@@ -69,7 +69,7 @@ class ChecksController {
 
 	async deleteOne({ params, user }) {
 		try {
-			const check = await checksService.findOne(params.id, user.id);
+			const check = await checksService.findOne(user.id, params.id);
 			if(!check) {
 				return new HttpResponse(HttpCodes.NOT_FOUND, new HttpError('Check was not found'));
 			}

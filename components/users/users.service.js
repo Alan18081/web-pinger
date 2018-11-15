@@ -10,6 +10,11 @@ class UsersService {
 		this.folder = 'users';
 	}
 
+	async findAllUserIds() {
+		const filenames = await files.filesList(this.folder);
+		return filenames.map(filename => filename.split('-')[0]);
+	}
+
 	async findAll() {
 		return await files.list(this.folder);
 	}

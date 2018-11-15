@@ -1,5 +1,7 @@
 const readline = require('readline');
 const cliService = require('./cli.service');
+const { EventEmitter } = require('events');
+const COMMANDS = require('./commands');
 
 class CliHandler {
 	constructor() {
@@ -7,30 +9,32 @@ class CliHandler {
 			input: process.stdin,
 			output: process.stdout
 		});
+		this.emitter = new EventEmitter();
 		this.processInput = this.processInput.bind(this);
 		this.interface.on('line', this.processInput);
+
+		this.registerHandlers();
 	}
 
 	processInput(string) {
-		const commandsArray = string.split(' ');
-		const { commands } = cliService;
+		const commandsArray = string.trim().split(' ');
 
 		if(commandsArray.length === 1) {
 			switch (commandsArray[0]) {
-				case commands.help:
-					cliService.help();
+				case COMMANDS.help:
+					this.emitter.emit(COMMANDS.help);
 					break;
-				case commands.exit:
+				case COMMANDS.exit:
 					process.exit(0);
 					break;
-				case commands.stats:
-					cliService.stats();
+				case COMMANDS.stats:
+					this.emitter.emit(COMMANDS.stats);
 					break;
-				case commands.users:
-					cliService.listUsers();
+				case COMMANDS.users:
+					this.emitter.emit(COMMANDS.users);
 					break;
-				case commands.checks:
-					cliService.listChecks();
+				case COMMANDS.checks:
+					this.emitter.emit(COMMANDS.checks);
 					break;
 			}
 		} else {
@@ -44,20 +48,35 @@ class CliHandler {
 			}
 
 			switch (commandsArray[0]) {
-				case commands.users:
-
-					cliService.moreUserInfo(args.id);
+				case COMMANDS.users:
+					this.emitter.emit(COMMANDS.moreUserInfo, args.id);
 					break;
-				case commands.checks:
-					cliService.moreCheckInfo();
+				case COMMANDS.checks:
+					if(args.checkId) {
+            this.emitter.emit(COMMANDS.moreCheckInfo, args.checkId);
+					} else if(args.userId) {
+						this.emitter.emit(COMMANDS.checksByUserId, args.userId);
+					}
 					break;
 			}
 		}
 	}
 
 	registerHandlers() {
+    this.emitter.on(COMMANDS.help, cliService.help);
 
-	}
+    this.emitter.on(COMMANDS.stats, cliService.stats);
+
+    this.emitter.on(COMMANDS.users, cliService.listUsers);
+
+    this.emitter.on(COMMANDS.moreUserInfo, cliService.moreUserInfo);
+
+    this.emitter.on(COMMANDS.checks, cliService.listChecks);
+
+    this.emitter.on(COMMANDS.moreCheckInfo, cliService.moreCheckInfo);
+
+    this.emitter.on(COMMANDS.checksByUserId, cliService.listChecksByUserId);
+  }
 
 	run() {
 		this.interface.prompt('>');
