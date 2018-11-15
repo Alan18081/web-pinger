@@ -37,7 +37,7 @@ class CliHandler {
 					this.emitter.emit(COMMANDS.checks);
 					break;
         case COMMANDS.logs:
-          this.emitter.emit(COMMANDS.logs);
+	        this.emitter.emit(COMMANDS.logs);
 			}
 		} else {
 			const args = {};
@@ -45,7 +45,7 @@ class CliHandler {
 			for(let i = 0; i < commandsArray.length; i++) {
 				const word = commandsArray[i];
 				if(word.indexOf('--') !== -1) {
-					args[word.replace(/--/,'')] = commandsArray[i + 1];
+					args[word.replace(/--/,'')] = commandsArray[i + 1] || true;
 				}
 			}
 
@@ -60,6 +60,14 @@ class CliHandler {
 						this.emitter.emit(COMMANDS.checksByUserId, args.userId);
 					}
 					break;
+				case COMMANDS.logs:
+					if(string.indexOf('compressed') !== -1 && args.logId) {
+						this.emitter.emit(COMMANDS.moreCompressedLogInfo, args.logId);
+					} else if(string.indexOf('compressed') !== -1) {
+						this.emitter.emit(COMMANDS.compressedLogs);
+					} else {
+						this.emitter.emit(COMMANDS.moreLogInfo, args.logId);
+					}
 			}
 		}
 	}
@@ -73,11 +81,17 @@ class CliHandler {
 
     this.emitter.on(COMMANDS.logs, cliService.listLogs);
 
+    this.emitter.on(COMMANDS.compressedLogs, cliService.listCompressedLogs);
+
     this.emitter.on(COMMANDS.moreUserInfo, cliService.moreUserInfo);
 
     this.emitter.on(COMMANDS.checks, cliService.listChecks);
 
     this.emitter.on(COMMANDS.moreCheckInfo, cliService.moreCheckInfo);
+
+		this.emitter.on(COMMANDS.moreLogInfo, cliService.moreLogInfo);
+
+		this.emitter.on(COMMANDS.moreCompressedLogInfo, cliService.moreCompressedLogInfo);
 
     this.emitter.on(COMMANDS.checksByUserId, cliService.listChecksByUserId);
   }

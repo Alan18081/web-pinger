@@ -40,12 +40,14 @@ class Files {
 
 	}
 
-	createReadStream(filename) {
-		return fs.createReadStream(path.join(this.baseDir, filename));
+	createReadStream(dir, filename, settings = {}) {
+		const { ext = 'json' } = settings;
+		return fs.createReadStream(path.join(this.baseDir, `/${dir}/${filename}.${ext}`));
 	}
 
-	createWriteStream(filename) {
-		return fs.createWriteStream(path.join(this.baseDir, filename));
+	createWriteStream(dir, filename, settings = {}) {
+		const { ext = 'json' } = settings;
+		return fs.createWriteStream(path.join(this.baseDir, `/${dir}/${filename}.${ext}`));
 	}
 
 	watch(dir, handler) {
@@ -57,7 +59,7 @@ class Files {
 		return await fs.readdir(path.join(this.baseDir, `/${dir}/`));
 	}
 
-	async appendFile(dir, file, data, settings) {
+	async appendFile(dir, file, data, settings = {}) {
     const { ext = 'json' } = settings;
 
     await this.prepareDir(dir);
@@ -71,7 +73,7 @@ class Files {
 		}
 	}
 
-	async create(dir, file, data, settings) {
+	async create(dir, file, data, settings = {}) {
     const { ext = 'json' } = settings;
 
     await this.prepareDir(dir);
@@ -81,7 +83,7 @@ class Files {
 		await fs.close(fileDescriptor);
 	}
 
-	async read(dir, file, settings) {
+	async read(dir, file, settings = {}) {
     const { ext = 'json', raw = false } = settings;
 
     await this.prepareDir(dir);
@@ -94,7 +96,7 @@ class Files {
 		return helpers.parseJson(data);
 	}
 
-	async update(dir, file, data, settings) {
+	async update(dir, file, data, settings = {}) {
 		const { ext = 'json' } = settings;
 
 		await this.prepareDir(dir);

@@ -57,8 +57,27 @@ function validateEmail(email) {
 	return /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm.test(email);
 }
 
+function promiseStream(stream) {
+	return new Promise((resolve, reject) => {
+		let data = '';
+		stream.on('data', chunk => {
+			data += chunk.toString();
+		});
+
+		stream.on('error', error => {
+			reject(error);
+		});
+
+		stream.on('end', () => {
+			console.log(data);
+			resolve(data);
+		});
+	});
+}
+
 module.exports = {
 	pathParser,
 	parseJson,
-	validateEmail
+	validateEmail,
+	promiseStream
 };

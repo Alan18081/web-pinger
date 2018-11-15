@@ -27,7 +27,7 @@ class WorkerService {
 	rotateLoop() {
 		setInterval(() => {
 			this.rotateLogs();
-		}, 1000 * 60 * 60 * 24);
+		}, 1000 * 5);
 	}
 
 	watchChanges() {

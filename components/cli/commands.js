@@ -8,5 +8,7 @@ module.exports = {
   checksByUserId: 'checks by user ID',
   moreCheckInfo: 'more check info',
   logs: 'logs',
-  moreLogInfo: 'more log info'
+  compressedLogs: 'compressed logs',
+  moreLogInfo: 'more log info',
+  moreCompressedLogInfo: 'more compressed log info'
 };

@@ -24,7 +24,7 @@ class CliService {
 
 	help() {
 		cliHelpers.horizontalLine();
-		cliHelpers.centered('CLI MANUAL');
+		cliHelpers.centered('CLI Manual');
 		cliHelpers.horizontalLine();
 		cliHelpers.verticalSpace(2);
 
@@ -49,13 +49,13 @@ class CliService {
 			'Uptime': os.uptime() + ' seconds'
 		};
 
-		cliHelpers.header('STATS');
+		cliHelpers.header('Stats');
 
 		cliHelpers.renderList(stats);
 	}
 
 	async listUsers() {
-		cliHelpers.header('ALL USERS');
+		cliHelpers.header('All users');
 
 		try  {
 			const users = await usersService.findAll();
@@ -131,9 +131,8 @@ class CliService {
 
 	async listChecksByUserId(userId) {
 		if(userId) {
-      cliHelpers.header('ALL CHECKS FOR USER ID', userId);
+      cliHelpers.header('All checks for userId', userId);
 			try {
-
 				const checks = await checkService.findByUserId(userId);
 
 				if(checks.length === 0) {
@@ -154,30 +153,49 @@ class CliService {
 
 		try {
       const logs = await logsService.findAllUncompressedLogs();
-      console.log(logs);
       cliHelpers.renderArray(logs);
 		} catch (e) {
       cliHelpers.error('Failed to load log\'s list', e);
     }
 
-
 	}
 
-	async moreLogInfo(str) {
-		const commandsArray = str.split('--');
-		const logId = typeof commandsArray[1] === 'string' && commandsArray.length > 0 ? commandsArray[1] : false;
-
+	async moreLogInfo(logId) {
+		cliHelpers.header('Logs for', logId);
 		if(logId) {
-			const logData = await logsService.findUncompressedLog(logId);
-			_data.read('logs', logId, (err, checkData) => {
-				if(!err && checkData) {
-					console.dir(checkData, { colors: true });
-				} else {
-					cliHelpers.error('Failed to get check by ID');
-				}
-			});
+			try {
+				const logList = await logsService.findUncompressedLog(logId);
+				cliHelpers.renderArray(logList);
+			} catch (e) {
+				cliHelpers.error('Failed to load log', e);
+			}
 		} else {
 			cliHelpers.error('Invalid log\'s ID');
+		}
+	}
+
+	async moreCompressedLogInfo(logId) {
+		cliHelpers.header('Logs for', logId);
+		if(logId) {
+			try {
+				const logList = await logsService.findCompressedLog(logId);
+				cliHelpers.renderArray(logList);
+			} catch (e) {
+				cliHelpers.error('Failed to load log', e);
+			}
+		} else {
+			cliHelpers.error('Invalid log\'s ID');
+		}
+	}
+
+	async listCompressedLogs() {
+		cliHelpers.header('All compressed logs');
+
+		try {
+			const logs = await logsService.findAllCompressedLogs();
+			cliHelpers.renderArray(logs);
+		} catch (e) {
+			cliHelpers.error('Failed to load compressed log\'s list', e);
 		}
 	}
 }

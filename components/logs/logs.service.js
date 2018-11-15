@@ -9,9 +9,13 @@ class LogsService {
 	constructor(compressedFolder, uncompressedFolder) {
 		this.compressedFolder = compressedFolder;
 		this.uncompressedFolder = uncompressedFolder;
+
+		this.compress = this.compress.bind(this);
+		this.decompress = this.decompress.bind(this);
 	}
 
 	async compressLogs() {
+		await files.prepareDir(this.compressedFolder);
 		const logs = await files.filesList(this.uncompressedFolder);
 		await Promise.all(logs.map(this.compress));
 	}
@@ -22,15 +26,24 @@ class LogsService {
 	}
 
 	async findAllUncompressedLogs() {
-		const logsFilesList = await files.list(this.uncompressedFolder, { ext: 'log', raw: true});
-		return logsFilesList.map(logFileContent => {
-			const logsArray = logFileContent.split('\n');
-			return logsArray.map(helpers.parseJson);
-		});
+		return await files.filesList(this.uncompressedFolder, { ext: 'log', raw: true});
+	}
+
+	async findAllCompressedLogs() {
+		return await files.filesList(this.compressedFolder, { ext: '.gz.base64', raw: true});
 	}
 
 	async findUncompressedLog(logId) {
-		return await files.read(this.uncompressedFolder, logId, 'log');
+		const logsString = await files.read(this.uncompressedFolder, logId, { ext: 'log', raw: true });
+		const logsList = logsString.split('\n');
+		return logsList.map(helpers.parseJson);
+	}
+
+	async findCompressedLog(logId) {
+		const logStream = await this.decompress(logId);
+		const data = await helpers.promiseStream(logStream);
+		const logList = data.split('\n');
+		return logList.map(helpers.parseJson);
 	}
 
 	async appendNewLog(checkData, statusCode, emailStatus) {
@@ -53,18 +66,18 @@ class LogsService {
 	async compress(logName) {
 		const distFilename = logName.replace('.log', '.gz.base64');
 		try {
-			files.createReadStream(logName)
+			files.createReadStream(this.uncompressedFolder, logName)
 				.pipe(zlib.createGzip())
-				.pipe(files.createWriteStream(distFilename));
+				.pipe(files.createWriteStream(this.compressedFolder, distFilename));
 		} catch (e) {
 			console.log(e);
 		}
 	}
 
-	async decompress(zipedLogName) {
+	async decompress(logId) {
 		try {
-			return files.createReadStream(zipedLogName)
-				.pipe(zlib.createGuzip());
+			return files.createReadStream(this.compressedFolder, logId, { ext: 'gz.base64' })
+				.pipe(zlib.createGunzip());
 		} catch (e) {
 			console.log(e);
 		}
