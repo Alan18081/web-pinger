@@ -1,5 +1,4 @@
 const readline = require('readline');
-const { EventEmitter } = require('events');
 const cliService = require('./cli.service');
 
 class CliHandler {
@@ -40,12 +39,13 @@ class CliHandler {
 			for(let i = 0; i < commandsArray.length; i++) {
 				const word = commandsArray[i];
 				if(word.indexOf('--') !== -1) {
-					args[word.replace(/--/)] = commandsArray[i + 1];
+					args[word.replace(/--/,'')] = commandsArray[i + 1];
 				}
 			}
 
 			switch (commandsArray[0]) {
 				case commands.users:
+
 					cliService.moreUserInfo(args.id);
 					break;
 				case commands.checks:

@@ -42,7 +42,6 @@ class CliHelper {
 		this.horizontalLine();
 		this.centered(title);
 		this.horizontalLine();
-		this.verticalSpace(2);
 	};
 
 	renderList(data) {

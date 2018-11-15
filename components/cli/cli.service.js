@@ -90,6 +90,7 @@ class CliService {
 			if(userId.indexOf('@') !== -1) {
 				try {
 					const user = await usersService.findByEmail(userId);
+					cliHelpers.header('User Info');
 					console.dir(user, { colors: true });
 				} catch (e) {
 					cliHelpers.error('Failed to get user by email', e);
@@ -97,6 +98,7 @@ class CliService {
 			} else {
 				try {
 					const user = await usersService.findById(userId);
+					cliHelpers.header('User Info');
 					console.dir(user, { colors: true });
 				} catch (e) {
 					cliHelpers.error('Failed to get user by ID', e);
@@ -109,7 +111,7 @@ class CliService {
 	}
 
 	async listChecks() {
-		const checks = await checkService.findByUserId(userId);
+		const checks = await checkService.findAll();
 
 		checks.forEach(check => {
 			const line = `

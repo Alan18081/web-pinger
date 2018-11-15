@@ -27,7 +27,7 @@ class UsersService {
 	async findById(userId) {
 		const filesList = await files.filesList(this.folder);
 		const userFilename = filesList.find(filename => filename.indexOf(userId) !== -1);
-		return await files.read('users', userFilename);
+		return await files.read('users', userFilename.replace(/.json/, ''));
 	}
 
 	createUserFilename(id, email) {

@@ -8,6 +8,17 @@ class ChecksService {
 		this.folder = 'checks';
 	}
 
+	async findAll() {
+		const userFolders = await files.filesList(this.folder);
+		const checks = [];
+		await Promise.all(userFolders.map(async folder => {
+			const userChecks = await this.findByUserId(folder);
+			checks.concat(userChecks);
+		}));
+
+		return checks;
+	}
+
 	async findByUserId(userId, query) {
 		if(!query.unlimit) {
 			return await files.list(
