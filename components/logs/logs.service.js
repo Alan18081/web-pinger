@@ -1,6 +1,7 @@
 const Files = require('../../helpers/files.helper');
 const zlib = require('zlib');
 const Log = require('./log.entity');
+const helpers = require('../../helpers/common');
 
 const files = new Files('.logs');
 
@@ -21,7 +22,11 @@ class LogsService {
 	}
 
 	async findAllUncompressedLogs() {
-		return await files.list(this.uncompressedFolder, 'log');
+		const logsFilesList = await files.list(this.uncompressedFolder, { ext: 'log', raw: true});
+		return logsFilesList.map(logFileContent => {
+			const logsArray = logFileContent.split('\n');
+			return logsArray.map(helpers.parseJson);
+		});
 	}
 
 	async findUncompressedLog(logId) {
@@ -38,7 +43,7 @@ class LogsService {
 				emailSent: emailStatus ? 'Success' : 'Failed'
 			});
 
-			await files.appendFile(this.uncompressedFolder, log.id, JSON.stringify(log) + '\n', 'log');
+			await files.appendFile(this.uncompressedFolder, log.id, JSON.stringify(log) + '\n', { ext: 'log'});
 		} catch (e) {
 			console.log(e);
 		}

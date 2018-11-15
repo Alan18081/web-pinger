@@ -19,7 +19,9 @@ class Files {
 		this.baseDir = path.join(__dirname, `/../${dir}`);
 	}
 
-	async list(dir, ext = 'json', params) {
+	async list(dir, settings = {}) {
+    const { params, ext = 'json', raw = false } = settings;
+
 		await this.prepareDir(dir);
 
 		const filenamesList = await fs.readdir(path.join(this.baseDir, `/${dir}/`));
@@ -33,7 +35,7 @@ class Files {
 		}
 
 		return await Promise.all(sizedFilenames.map(filename => {
-			return this.read(dir, filename.replace(`.${ext}`, ''), ext);
+			return this.read(dir, filename.replace(`.${ext}`, ''), { ext, raw });
 		}));
 
 	}
@@ -55,8 +57,10 @@ class Files {
 		return await fs.readdir(path.join(this.baseDir, `/${dir}/`));
 	}
 
-	async appendFile(dir, file, data, ext = 'json') {
-		await this.prepareDir(dir);
+	async appendFile(dir, file, data, settings) {
+    const { ext = 'json' } = settings;
+
+    await this.prepareDir(dir);
 		await fs.appendFile(path.join(this.baseDir, `/${dir}/${file}.${ext}`), data);
 	}
 
@@ -67,25 +71,32 @@ class Files {
 		}
 	}
 
-	async create(dir, file, data, ext = 'json') {
-		await this.prepareDir(dir);
+	async create(dir, file, data, settings) {
+    const { ext = 'json' } = settings;
+
+    await this.prepareDir(dir);
 		const fileDescriptor = await fs.open(path.join(this.baseDir, `/${dir}/${file}.${ext}`), 'wx');
 		const stringifiedData = JSON.stringify(data);
 		await fs.writeFile(fileDescriptor, stringifiedData);
 		await fs.close(fileDescriptor);
 	}
 
-	async read(dir, file, ext = 'json') {
-		await this.prepareDir(dir);
-		const data = await this.readRaw(path.join(this.baseDir, `/${dir}/${file}.${ext}`));
+	async read(dir, file, settings) {
+    const { ext = 'json', raw = false } = settings;
+
+    await this.prepareDir(dir);
+		const data = await fs.readFile(path.join(this.baseDir, `/${dir}/${file}.${ext}`), 'utf8');
+
+		if(raw) {
+			return data;
+		}
+
 		return helpers.parseJson(data);
 	}
 
-	async readRaw(path) {
-		return await fs.readFile(path, 'utf8');
-	}
+	async update(dir, file, data, settings) {
+		const { ext = 'json' } = settings;
 
-	async update(dir, file, data, ext = 'json') {
 		await this.prepareDir(dir);
 		const fileDescriptor = await fs.open(path.join(this.baseDir, `/${dir}/${file}.${ext}`), 'r+');
 		const oldStringData = await fs.readFile(fileDescriptor, 'utf8');
@@ -106,14 +117,18 @@ class Files {
 		return newData;
 	}
 
-	async renameOne(dir, oldFilename, newFilename, oldExt = 'json', newExt = 'json') {
+	async renameOne(dir, oldFilename, newFilename, settings = {}) {
+		const { oldExt = 'json', newExt = 'json' } = settings;
+
 		await this.prepareDir(dir);
 		const oldPath = path.join(this.baseDir, `/${dir}/${oldFilename}.${oldExt}`);
 		const newPath = path.join(this.baseDir, `/${dir}/${newFilename}.${newExt}`);
 		await fs.rename(oldPath, newPath);
 	}
 
-	async deleteFile(dir, file, ext = 'json') {
+	async deleteFile(dir, file, settings = {}) {
+    const { ext = 'json' } = settings;
+
 		await this.prepareDir(dir);
 		await fs.unlink(path.join(this.baseDir, `/${dir}/${file}.${ext}`));
 	}
