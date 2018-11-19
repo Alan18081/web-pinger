@@ -12,13 +12,14 @@ class LogsService {
 
 		this.compress = this.compress.bind(this);
 		this.decompress = this.decompress.bind(this);
+		this.clearLog = this.clearLog.bind(this);
 	}
 
 	async compressLogs() {
 		await files.prepareDir(this.compressedFolder);
 		const logs = await files.filesList(this.uncompressedFolder);
 		await Promise.all(logs.map(this.compress));
-		await Promise.all(logs.map(log => this.clearLog(log.replace(/.log/, ''))))
+		await Promise.all(logs.map(this.clearLog))
 	}
 
 	async decompressLogs() {
@@ -66,18 +67,18 @@ class LogsService {
 
 	async clearLog(logName) {
     try {
-      await files.clearFile(this.uncompressedFolder, logName, { ext: 'log' });
+      await files.clearFile(this.uncompressedFolder, logName.replace(/.log/, ''), { ext: 'log' });
     } catch (e) {
       console.log(e);
     }
   }
 
 	async compress(logName) {
-		const distFilename = logName.replace('.log', '.gz.base64');
+	  const id = logName.replace(/.log/, '');
 		try {
-			files.createReadStream(this.uncompressedFolder, logName)
+			files.createReadStream(this.uncompressedFolder, id, { ext: 'log' })
 				.pipe(zlib.createGzip())
-				.pipe(files.createWriteStream(this.compressedFolder, distFilename));
+				.pipe(files.createWriteStream(this.compressedFolder, id, { ext: 'gz.base64' }));
 		} catch (e) {
 			console.log(e);
 		}

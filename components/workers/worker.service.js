@@ -70,9 +70,7 @@ class WorkerService {
 			} else {
 				checkData.status = SiteStatuses.down;
 			}
-
-			console.log(checkData);
-
+			
 			await files.update(`checks/${checkData.userId}`, checkData.id, checkData);
 			const userData = await usersService.findById(checkData.userId);
 			const isSuccess = await emailsService.sendEmail(userData.email, checkData);

@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="016effbd-525b-41c9-8677-111a58040ec9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.logs/compressed/1497314aa2da390ff74cdda6c956414d.gz.base64" beforeDir="false" afterPath="$PROJECT_DIR$/.logs/compressed/1497314aa2da390ff74cdda6c956414d.gz.base64" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.logs/compressed/3f9081a408eb84da3bf1cdb302113e13.gz.base64" beforeDir="false" afterPath="$PROJECT_DIR$/.logs/compressed/3f9081a408eb84da3bf1cdb302113e13.gz.base64" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.logs/uncompressed/1497314aa2da390ff74cdda6c956414d.log" beforeDir="false" afterPath="$PROJECT_DIR$/.logs/uncompressed/1497314aa2da390ff74cdda6c956414d.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.logs/uncompressed/3f9081a408eb84da3bf1cdb302113e13.log" beforeDir="false" afterPath="$PROJECT_DIR$/.logs/uncompressed/3f9081a408eb84da3bf1cdb302113e13.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/logs/logs.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/logs/logs.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers/files.helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/helpers/files.helper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/workers/worker.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/workers/worker.service.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,20 +29,20 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="base64" value="3" />
+          <entry key="base64" value="5" />
           <entry key="ini" value="1" />
-          <entry key="js" value="24" />
-          <entry key="json" value="6" />
-          <entry key="log" value="11" />
+          <entry key="js" value="27" />
+          <entry key="json" value="7" />
+          <entry key="log" value="13" />
           <entry key="ts" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Ini" value="1" />
-          <entry key="JSON" value="6" />
-          <entry key="JavaScript" value="24" />
-          <entry key="PLAIN_TEXT" value="14" />
+          <entry key="JSON" value="7" />
+          <entry key="JavaScript" value="27" />
+          <entry key="PLAIN_TEXT" value="18" />
           <entry key="TypeScript" value="1" />
         </counts>
       </usages-collector>
@@ -49,13 +53,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="4270" />
+          <entry key="js" value="4489" />
           <entry key="ts" value="1316" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="4270" />
+          <entry key="JavaScript" value="4489" />
           <entry key="TypeScript" value="1316" />
         </counts>
       </usages-collector>
@@ -68,20 +72,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/logs/logs.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="20" column="74" selection-start-line="20" selection-start-column="74" selection-end-line="20" selection-end-column="74" />
+            <state relative-caret-position="434">
+              <caret line="14" column="45" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.logs/compressed/3f9081a408eb84da3bf1cdb302113e13.log.gz.base64">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="14" column="15" lean-forward="true" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="218">
+              <caret line="83" column="2" selection-start-line="83" selection-start-column="2" selection-end-line="83" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-898">
+              <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/workers/worker.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
+            <state relative-caret-position="193">
+              <caret line="72" column="6" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -89,8 +125,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/helpers/files.helper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="99" column="38" selection-start-line="99" selection-start-column="38" selection-end-line="99" selection-end-column="38" />
+            <state relative-caret-position="228">
+              <caret line="58" column="10" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -140,12 +176,12 @@
         <option value="$PROJECT_DIR$/helpers/cli.helper.js" />
         <option value="$PROJECT_DIR$/components/cli/commands.js" />
         <option value="$PROJECT_DIR$/components/cli/cli.handler.js" />
-        <option value="$PROJECT_DIR$/components/workers/worker.service.js" />
         <option value="$PROJECT_DIR$/components/email/emails.service.js" />
         <option value="$PROJECT_DIR$/components/cli/cli.service.js" />
         <option value="$PROJECT_DIR$/config.js" />
         <option value="$PROJECT_DIR$/helpers/files.helper.js" />
         <option value="$PROJECT_DIR$/components/logs/logs.service.js" />
+        <option value="$PROJECT_DIR$/components/workers/worker.service.js" />
       </list>
     </option>
   </component>
@@ -186,13 +222,19 @@
             <path>
               <item name="site-checker" type="b2602c69:ProjectViewProjectNode" />
               <item name="site-checker" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name=".logs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="site-checker" type="b2602c69:ProjectViewProjectNode" />
               <item name="site-checker" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="workers" type="462c0819:PsiDirectoryNode" />
+              <item name=".logs" type="462c0819:PsiDirectoryNode" />
+              <item name="compressed" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="site-checker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="site-checker" type="462c0819:PsiDirectoryNode" />
+              <item name=".logs" type="462c0819:PsiDirectoryNode" />
+              <item name="uncompressed" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -236,18 +278,18 @@
       <workItem from="1542285467727" duration="9189000" />
       <workItem from="1542365838755" duration="600000" />
       <workItem from="1542369416135" duration="3159000" />
-      <workItem from="1542608353296" duration="2159000" />
+      <workItem from="1542608353296" duration="2790000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17146000" />
+    <option name="totallyTimeSpent" value="17777000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-4" width="1920" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19903949" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19903949" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -260,7 +302,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3673036" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3673036" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -346,13 +388,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1624">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
         </state>
       </provider>
     </entry>
@@ -456,34 +491,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.logs/uncompressed/1497314aa2da390ff74cdda6c956414d.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-211">
-          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.logs/compressed/3f9081a408eb84da3bf1cdb302113e13.gz.base64.json" />
-    <entry file="file://$PROJECT_DIR$/.logs/compressed/3f9081a408eb84da3bf1cdb302113e13.gz.base64">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.logs/uncompressed/3f9081a408eb84da3bf1cdb302113e13.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/cli/cli.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
@@ -509,24 +516,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.logs/compressed/3f9081a408eb84da3bf1cdb302113e13.gz.base64.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.logs/compressed/3f9081a408eb84da3bf1cdb302113e13.gz.base64">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.logs/uncompressed/1497314aa2da390ff74cdda6c956414d.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.logs/uncompressed/3f9081a408eb84da3bf1cdb302113e13.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-898">
+          <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/helpers/files.helper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="99" column="38" selection-start-line="99" selection-start-column="38" selection-end-line="99" selection-end-column="38" />
+        <state relative-caret-position="228">
+          <caret line="58" column="10" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="14" column="15" lean-forward="true" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="83" column="2" selection-start-line="83" selection-start-column="2" selection-end-line="83" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.logs/compressed/3f9081a408eb84da3bf1cdb302113e13.log.gz.base64">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/logs/logs.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="14" column="45" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/workers/worker.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/logs/logs.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="20" column="74" selection-start-line="20" selection-start-column="74" selection-end-line="20" selection-end-column="74" />
+        <state relative-caret-position="193">
+          <caret line="72" column="6" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="6" />
         </state>
       </provider>
     </entry>
