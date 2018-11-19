@@ -18,6 +18,7 @@ class LogsService {
 		await files.prepareDir(this.compressedFolder);
 		const logs = await files.filesList(this.uncompressedFolder);
 		await Promise.all(logs.map(this.compress));
+		await Promise.all(logs.map(log => this.clearLog(log.replace(/.log/, ''))))
 	}
 
 	async decompressLogs() {
@@ -62,6 +63,14 @@ class LogsService {
 		}
 
 	}
+
+	async clearLog(logName) {
+    try {
+      await files.clearFile(this.uncompressedFolder, logName, { ext: 'log' });
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
 	async compress(logName) {
 		const distFilename = logName.replace('.log', '.gz.base64');
