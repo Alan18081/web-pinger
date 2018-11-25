@@ -80,7 +80,7 @@ class ChecksFilter {
 		}
 
 		if(body.successCodes) {
-			if(!Array.isArray(body.successCodes)) {
+			if (!Array.isArray(body.successCodes)) {
 				return new HttpError('Success codes should be an array');
 			}
 			isNewDataExists = true;

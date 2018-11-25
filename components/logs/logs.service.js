@@ -63,12 +63,13 @@ class LogsService {
 
 	}
 
-	async compress(logName) {
-		const distFilename = logName.replace('.log', '.gz.base64');
+	async compress(logFileName) {
+		const logName = logFileName.replace('.log', '');
+
 		try {
-			files.createReadStream(this.uncompressedFolder, logName)
+			files.createReadStream(this.uncompressedFolder, logName, { ext: 'log' })
 				.pipe(zlib.createGzip())
-				.pipe(files.createWriteStream(this.compressedFolder, distFilename));
+				.pipe(files.createWriteStream(this.compressedFolder, logName, { ext: 'gz.base64' }));
 		} catch (e) {
 			console.log(e);
 		}
