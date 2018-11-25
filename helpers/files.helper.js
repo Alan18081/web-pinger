@@ -96,6 +96,14 @@ class Files {
 		return helpers.parseJson(data);
 	}
 
+	async clearFile(dir, file, settings = {}) {
+    const { ext = 'json' } = settings;
+
+    const fileDescriptor = await fs.open(path.join(this.baseDir, `/${dir}/${file}.${ext}`), 'r+');
+    await fs.ftruncate(fileDescriptor, 0);
+    await fs.close(fileDescriptor);
+	}
+
 	async update(dir, file, data, settings = {}) {
 		const { ext = 'json' } = settings;
 
