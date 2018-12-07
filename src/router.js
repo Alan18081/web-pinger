@@ -11,7 +11,7 @@ module.exports = {
 		'checks': auth(checksController.createOne),
 	},
 	get: {
-		'users': auth(usersController.findAll),
+		'users': usersController.findAll,
 		'checks/:id': auth(checksController.findOne),
 		'checks': auth(checksController.findByUserId),
 	},

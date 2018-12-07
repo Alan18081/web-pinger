@@ -1,7 +1,8 @@
 const Check = require('./check.entity');
 const Files = require('../../helpers/files.helper');
+const config = require('../../config');
 
-const files = new Files('.data');
+const files = new Files(config.dataDir);
 
 class ChecksService {
 	constructor() {

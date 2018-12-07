@@ -2,8 +2,9 @@ const User = require('./user.entity');
 const Files = require('../../helpers/files.helper');
 const cryptHelper = require('../../helpers/crypt.helper');
 const checksService = require('../checks/checks.service');
+const config = require('../../config');
 
-const files = new Files('.data');
+const files = new Files(config.dataDir);
 
 class UsersService {
 	constructor() {
@@ -25,8 +26,8 @@ class UsersService {
 		if(userFilename) {
 			return await files.read(this.folder, userFilename.replace(/.json/, ''));
 		}
+		
 		return false;
-
 	}
 
 	async findById(userId) {
@@ -40,6 +41,8 @@ class UsersService {
 	}
 
 	async createUser({ body }) {
+	  console.log('Data dir', config.dataDir);
+
 		const { email, firstName, lastName, password } = body;
 		const encryptedPassword = cryptHelper.encrypt(password);
 		const user = new User({
@@ -50,6 +53,7 @@ class UsersService {
 		});
 
 		const filename = this.createUserFilename(user.id, user.email);
+
 
 		await files.create(this.folder, filename, user);
 		delete user.password;

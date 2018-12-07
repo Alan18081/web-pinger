@@ -1,0 +1,16 @@
+{
+  "name": "site-checker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Alan18081/web-pinger.git",
+  "author": "t.kandibolotskaya <t.kandibolotskaya@bet-makers.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "NODE_ENV=testing rm -rf ./src/.test-data && rm -rf ./src/.test-logs && mkdir ./src/.test-data && mkdir ./src/.test-logs && jest"
+  },
+  "dependencies": {
+    "jest": "^23.6.0",
+    "supertest": "^3.3.0"
+  }
+}

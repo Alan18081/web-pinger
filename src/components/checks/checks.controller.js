@@ -47,6 +47,7 @@ class ChecksController {
 
 	async updateOne(data) {
 		const { user, params } = data;
+		console.log(params);
 		const error = checksFilter.updateOne(data);
 
 		if(error) {
@@ -54,7 +55,6 @@ class ChecksController {
 		}
 		try {
 			const check = await checksService.findOne(user.id, params.id);
-			console.log(check);
 			if(!check) {
 				return new HttpResponse(HttpCodes.NOT_FOUND, new HttpError('Check was not found'));
 			}

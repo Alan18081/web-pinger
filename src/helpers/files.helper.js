@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const util = require('util');
-const helpers = require('../helpers/common');
+const helpers = require('./common');
 
 fs.open = util.promisify(fs.open);
 fs.writeFile = util.promisify(fs.writeFile);
@@ -16,7 +16,7 @@ fs.rename = util.promisify(fs.rename);
 
 class Files {
 	constructor(dir) {
-		this.baseDir = path.join(__dirname, `/../${dir}`);
+		this.baseDir = dir;
 	}
 
 	async list(dir, settings = {}) {
@@ -67,13 +67,19 @@ class Files {
 	}
 
 	async prepareDir(dir) {
-		const isExists = fs.existsSync(path.join(this.baseDir, dir));
-		if(!isExists) {
-			await fs.mkdir(path.join(this.baseDir, dir));
+		try {
+			const isExists = fs.existsSync(path.join(this.baseDir, dir));
+			if(!isExists) {
+				await fs.mkdir(path.join(this.baseDir, dir));
+			}
+		} catch (e) {
+			console.error('Failed to prepare directory: ', e);
 		}
+
 	}
 
 	async create(dir, file, data, settings = {}) {
+		console.log('Check dir');
     const { ext = 'json' } = settings;
 
     await this.prepareDir(dir);

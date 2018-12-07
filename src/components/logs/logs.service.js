@@ -2,8 +2,9 @@ const Files = require('../../helpers/files.helper');
 const zlib = require('zlib');
 const Log = require('./log.entity');
 const helpers = require('../../helpers/common');
+const config = require('../../config');
 
-const files = new Files('.logs');
+const files = new Files(config.logsDir);
 
 class LogsService {
 	constructor(compressedFolder, uncompressedFolder) {

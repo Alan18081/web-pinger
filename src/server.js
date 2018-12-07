@@ -91,6 +91,11 @@ class Server {
 		});
 	}
 
+	stop() {
+		this.httpServer.close();
+		this.httpsServer.close();
+	}
+
 	decodeBody(req) {
 		return new Promise((resolve, reject) => {
 			const decoder = new StringDecoder('utf-8');

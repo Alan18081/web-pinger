@@ -1,5 +1,6 @@
-// Container for all environments
+const path = require('path');
 const environments = {};
+
 
 // Staging (default) environment
 environments.staging = {
@@ -7,6 +8,8 @@ environments.staging = {
 	httpsPort: 3001,
 	envName: 'staging',
 	hashSecret: 'Some secret',
+	dataDir: path.join(__dirname, '.data'),
+	logsDir: path.join(__dirname, '.logs'),
 	maxChecks: 5,
 	passwordLength: 6,
 	sendgrid: {
@@ -14,11 +17,13 @@ environments.staging = {
 	}
 };
 
-environments.testing = {
+environments.test = {
   httpPort: 4000,
   httpsPort: 4001,
   envName: 'testing',
-  hashSecret: 'Some secret',
+	dataDir: path.join(__dirname, '.test-data'),
+	logsDir: path.join(__dirname, '.test-logs'),
+	hashSecret: 'Some secret',
   maxChecks: 5,
 	passwordLength: 6,
   sendgrid: {
@@ -31,6 +36,8 @@ environments.production = {
 	httpPort: 5000,
 	httpsPort: 5001,
 	envName: 'production',
+	dataDir: path.join(__dirname, '.prod-data'),
+	logsDir: path.join(__dirname, 'prod-logs'),
 	hashSecret: 'Some production secret',
 	maxChecks: 5,
 	passwordLength: 6,

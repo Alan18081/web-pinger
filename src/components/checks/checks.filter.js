@@ -51,8 +51,12 @@ class ChecksFilter {
 
 	}
 
-	updateOne({ body }) {
+	updateOne({ body, params }) {
 		let isNewDataExists = false;
+
+		if(!params || !params.id) {
+			return new HttpError('You should provide id of particular check');
+		}
 
 		if(body.protocol) {
 			if(typeof body.protocol !== 'string') {
