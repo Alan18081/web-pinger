@@ -7,6 +7,7 @@ const HttpError = require('../../helpers/http/http-error');
 class ChecksController {
 
 	async createOne(data) {
+
 		const error = checksFilter.createOne(data);
 
 		if(error) {
