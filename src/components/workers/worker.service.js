@@ -9,7 +9,7 @@ const logsService = require('../logs/logs.service');
 const usersService = require('../users/users.service');
 const config = require('../../config');
 
-const emailsService = new EmailsService('gogunov00@gmail.com');
+const emailsService = new EmailsService('alexostapiuk00@gmail.com');
 const files = new Files(config.dataDir);
 
 class WorkerService {
@@ -76,7 +76,7 @@ class WorkerService {
 			const userData = await usersService.findById(checkData.userId);
 
 			if(oldStatus !== checkData.status) {
-				const isSuccess = await emailsService.sendEmail(userData.email, checkData);
+				const isSuccess = await emailsService.sendEmail(userData, checkData);
 				await logsService.appendNewLog(checkData, statusCode, isSuccess);
 			}
 

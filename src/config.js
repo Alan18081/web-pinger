@@ -13,7 +13,7 @@ environments.staging = {
 	maxChecks: 5,
 	passwordLength: 6,
 	sendgrid: {
-		apiKey: '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'
+		apiKey: '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'
 	}
 };
 
@@ -27,7 +27,7 @@ environments.test = {
   maxChecks: 5,
 	passwordLength: 6,
   sendgrid: {
-    apiKey: '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'
+    apiKey: 'e6f7cf0b45e9b6606302311494bde9ced638cb49e6bc683eeef61a35a137c7ae3835067a8b816730af452592c84bcdf0bf8a34dff7079e37683a48d8d497c863'
   }
 };
 
@@ -42,7 +42,7 @@ environments.production = {
 	maxChecks: 5,
 	passwordLength: 6,
   sendgrid: {
-    apiKey: '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'
+    apiKey: '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'
   }
 };
 

@@ -10,16 +10,17 @@ class CliService {
 	constructor() {
 		this.commandsDescriptions = {
 			[COMMANDS.exit]: 'Kill the cli (and whole app)',
-			[COMMANDS.man]: 'Display available commands for that cli',
 			[COMMANDS.help]: 'Alias for "man"',
 			[COMMANDS.stats]: 'Shows statistic for computer resources, that are consumed and available',
 			[COMMANDS.users]: 'Show list of all available users',
-			[`${COMMANDS.moreUserInfo} --{userId}`] : 'Show info for particular user',
-			[`${COMMANDS.listChecks} --up --down`]: 'Show list of all checks ("--up" and "--down" are optional)',
+			[`${COMMANDS.moreUserInfo} --id {userId}`] : 'Show info for particular user',
+			[`${COMMANDS.checks} --up --down`]: 'Show list of all checks ("--up" and "--down" are optional)',
 			[`${COMMANDS.moreCheckInfo} --{checkId}`]: 'Show info for particular check',
-			[`${COMMANDS.listLogs} --compressed --uncompressed`]: 'Show list of all logs (compressed and uncompressed)',
+			[`${COMMANDS.logs} --compressed --uncompressed`]: 'Show list of all logs (compressed and uncompressed)',
 			[`${COMMANDS.moreLogInfo} --{logId}`] : 'Show info for particular log',
 		};
+
+		this.help = this.help.bind(this);
 	}
 
 	help() {
@@ -153,7 +154,7 @@ class CliService {
 
 		try {
       const logs = await logsService.findAllUncompressedLogs();
-      cliHelpers.renderArray(logs);
+      cliHelpers.renderArray(logs.map(log => log.replace(/.log/, '')));
 		} catch (e) {
       cliHelpers.error('Failed to load log\'s list', e);
     }

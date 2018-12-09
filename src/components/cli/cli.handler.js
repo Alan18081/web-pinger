@@ -54,19 +54,19 @@ class CliHandler {
 					this.emitter.emit(COMMANDS.moreUserInfo, args.id);
 					break;
 				case COMMANDS.checks:
-					if(args.checkId) {
-            this.emitter.emit(COMMANDS.moreCheckInfo, args.checkId);
+					if(args.id) {
+            this.emitter.emit(COMMANDS.moreCheckInfo, args.id);
 					} else if(args.userId) {
 						this.emitter.emit(COMMANDS.checksByUserId, args.userId);
 					}
 					break;
 				case COMMANDS.logs:
-					if(string.indexOf('compressed') !== -1 && args.logId) {
-						this.emitter.emit(COMMANDS.moreCompressedLogInfo, args.logId);
+					if(string.indexOf('compressed') !== -1 && args.id) {
+						this.emitter.emit(COMMANDS.moreCompressedLogInfo, args.id);
 					} else if(string.indexOf('compressed') !== -1) {
 						this.emitter.emit(COMMANDS.compressedLogs);
 					} else {
-						this.emitter.emit(COMMANDS.moreLogInfo, args.logId);
+						this.emitter.emit(COMMANDS.moreLogInfo, args.id);
 					}
 			}
 		}

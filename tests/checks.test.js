@@ -16,6 +16,9 @@ const resultCheck = new Check({
   ...checkData,
 });
 
+delete resultCheck.id;
+
+
 describe('/checks', () => {
 
   let checkId;
@@ -27,40 +30,40 @@ describe('/checks', () => {
   };
 
   beforeAll(async () => {
-    await server.run();
+    await server.run(3007, 3008);
   });
 
   afterAll(async () => {
     server.stop();
   });
 
-  // describe('Authorized requests', () => {
-  //   let token;
-  //
-  //   beforeEach(async () => {
-  //     if(!token) {
-  //       await createUser(userData);
-  //       token = await getToken(userData.email, userData.password);
-  //     }
-  //   });
+  describe('Authorized requests', () => {
+	  let token, userId;
 
-    // describe('POST', () => {
+	  beforeEach(async () => {
+		  if (!token) {
+			  const body = await createUser(userData);
+			  userId = body.id;
+			  console.log(userId);
+			  token = await getToken(userData.email, userData.password);
+		  }
+	  });
 
-    //   it('should create new check', async () => {
-    //     const { body } = await request(server.httpServer)
-    //       .post('/checks')
-    //       .send(checkData)
-    //       .set('Authorization', `Bearer ${token}`)
-    //       .expect('Content-Type', /json/);
-    //
-    //     console.log('Body', body);
-    //
-    //     checkId = body.id;
-    //
-    //     expect(body).toEqual(resultCheck);
-    //   });
-    //
-    // });
+    describe('POST', () => {
+
+      it('should create new check', async () => {
+        const { body } = await request(server.httpServer)
+          .post('/checks')
+          .send({ ...checkData})
+          .set('Authorization', `Bearer ${token}`)
+          .expect('Content-Type', /json/);
+
+        checkId = body.id;
+
+        expect(body).toEqual({ ...resultCheck, userId });
+      });
+
+    });
 
     // describe('PUT', () => {
     //   const dataToUpdate = {
@@ -72,6 +75,8 @@ describe('/checks', () => {
     //     ...resultCheck,
     //     ...dataToUpdate,
     //   });
+    //
+    //   delete updatedData.id;
     //
     //   it('should update particular check by id', async () => {
     //
@@ -147,6 +152,6 @@ describe('/checks', () => {
     //
     // });
 
-  // });
+  });
 
 });

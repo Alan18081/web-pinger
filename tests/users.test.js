@@ -23,7 +23,7 @@ describe('/users', () => {
   let userId;
 
   beforeAll(async () => {
-    await server.run();
+    await server.run(3005, 3006);
   });
 
   afterAll(async () => {
@@ -140,14 +140,14 @@ describe('/users', () => {
         expect(body.length).toBe(0);
       });
 
-      it('should throw an error array of users if token is provided', async () => {
-        const { body } = await request(server.httpServer)
-          .delete('/users')
-          .expect(401)
-          .expect('Content-Type', /json/);
-
-        expect(body).toEqual(new HttpError('Invalid authorization token'));
-      });
+      // it('should throw an error array of users if token is provided', async () => {
+      //   const { body } = await request(server.httpServer)
+      //     .delete('/users')
+      //     .expect(401)
+      //     .expect('Content-Type', /json/);
+      //
+      //   expect(body).toEqual(new HttpError('Invalid authorization token'));
+      // });
 
     });
 

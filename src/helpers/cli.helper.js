@@ -59,7 +59,6 @@ class CliHelper {
 
 	renderList(data) {
 		data = typeof data === 'object' && data !== null ? data : {};
-
 		for(const key in data) {
 			if(data.hasOwnProperty(key)) {
 				const value = data[key];

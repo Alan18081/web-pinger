@@ -48,7 +48,6 @@ class ChecksController {
 
 	async updateOne(data) {
 		const { user, params } = data;
-		console.log(params);
 		const error = checksFilter.updateOne(data);
 
 		if(error) {

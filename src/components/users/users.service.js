@@ -41,7 +41,6 @@ class UsersService {
 	}
 
 	async createUser({ body }) {
-	  console.log('Data dir', config.dataDir);
 
 		const { email, firstName, lastName, password } = body;
 		const encryptedPassword = cryptHelper.encrypt(password);

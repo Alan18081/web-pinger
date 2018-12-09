@@ -1,16 +1,16 @@
 class Email {
-	constructor(senderEmail, receiverEmail, title, content) {
+	constructor(senderData, receiverData, title, content) {
 		this.personalizations = [ {
 			to: [
-				{email: receiverEmail}
+				receiverData
 			],
 			subject: title
 		} ];
 
-		this.from = { email: senderEmail };
+		this.from = senderData;
 
 		this.content = [
-			{ type: 'text/plain', value: content }
+			{ type: 'text/html', value: content }
 		];
 	}
 }

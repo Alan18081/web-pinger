@@ -151,7 +151,6 @@ class Files {
 
 	async deleteFolder(baseDir, dir) {
 		await this.prepareDir(baseDir);
-		await this.prepareDir(dir);
 		await fs.unlink(path.join(this.baseDir, `/${baseDir}/${dir}`));
 	}
 }

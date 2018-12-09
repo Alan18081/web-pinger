@@ -81,12 +81,12 @@ class Server {
 		// Log path
 	};
 
-	run() {
-		this.httpServer.listen(config.httpPort, () => {
+	run(httpPort, httpsPort) {
+		this.httpServer.listen(httpPort || config.httpPort, () => {
 			debug('\x1b[36m%s\x1b[0m', `Http server is listening port ${config.httpPort} in ${config.envName} environment`);
 		});
 
-		this.httpsServer.listen(config.httpsPort, () => {
+		this.httpsServer.listen(httpsPort || config.httpsPort, () => {
 			debug('\x1b[35m%s\x1b[0m', `Https server is listening port ${config.httpsPort} in ${config.envName} environment`);
 		});
 	}

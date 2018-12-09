@@ -7,7 +7,11 @@ const HttpCodes = require('../../helpers/http/http-codes');
 
 class EmailsService {
 	constructor(from) {
-		this.from = from;
+		this.fromData = {
+			email: from,
+			name: 'Web-Pinger'
+		};
+
 		this.baseUrl = url.parse('https://api.sendgrid.com');
 	}
 
@@ -22,15 +26,15 @@ class EmailsService {
 		return { title, text };
 	}
 
-	async sendEmail(receiverEmail, checkData) {
+	async sendEmail(user, checkData) {
 
 		const { title, text } = this.renderContent(checkData);
 
-		const email = new Email('gogunov00@gmail.com', receiverEmail, title, text);
+		const email = new Email(this.fromData, { email: user.email, name: user.firstName }, title, text);
 
 		const reqConfig = {
 			protocol: 'https:',
-			hostname: this.baseUrl.hostname,
+			hostname: 'api.sendgrid.com',
 			path: '/v3/mail/send',
 			method: 'post',
 			headers: {
