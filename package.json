@@ -6,12 +6,6 @@
   "author": "t.kandibolotskaya <t.kandibolotskaya@bet-makers.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js",
-    "test": "node ./src/helpers/tests-data-clearer.js && jest",
-    "test2": "rm -rf ./src/.test-data && rm -rf ./src/.test-logs && mkdir ./src/.test-data && mkdir ./src/.test-logs"
-  },
-  "dependencies": {
-    "jest": "^23.6.0",
-    "supertest": "^3.3.0"
+    "start": "node ./index.js"
   }
 }
